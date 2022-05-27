@@ -35,6 +35,42 @@ export const GlobalStyle = createGlobalStyle`
     button {
         cursor: pointer;
     }
+
+    .reactModalOverlay {
+        background: rgba(0,0,0,0.5);
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .reactModalContent{
+        width: 100%;
+        max-width: 576px;
+        background: #fff;
+        padding: 48px;
+        position: relative;
+        border-radius: 4px;
+    }
+
+    .reactModalClose {
+        position: absolute;
+        right: 26px;
+        top: 26px;
+        border: 0;
+        background: transparent;
+
+        transition: filter 0.2s;
+
+        &:hover {
+            filter: brightness(0.8);
+        }
+    }
 `;
 
 export const ContainerWidth = styled.div`
