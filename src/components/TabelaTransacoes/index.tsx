@@ -1,13 +1,11 @@
 import { useTransacoes } from '../../hooks/useTransacoes';
-import { ContainerWidth } from "../../styles/global";
 import { Content } from "./styles";
 
 export function Tabela(){
     const { transacaos } = useTransacoes();
 
     return(
-        <ContainerWidth>
-            <Content>
+        <Content>
             <table>
                 <thead>
                     <tr>
@@ -38,7 +36,6 @@ export function Tabela(){
                     })}                         
                 </tbody>
             </table>
-            </Content> 
-        </ContainerWidth>
+        </Content>
     );
 }

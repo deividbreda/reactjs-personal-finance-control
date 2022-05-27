@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Content = styled.div`
+    margin-top: 16px;
 
     table {
         width: 100%;
@@ -19,7 +20,6 @@ export const Content = styled.div`
         border: 0;
         background: #fff;
         color: #969CB3;
-        border-radius: 4px;
 
         &:first-child {
             color: #000
@@ -31,6 +31,14 @@ export const Content = styled.div`
 
         &.entrada {
             color: green;
+        }
+
+        button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            background: #c73333;
+            color: #fff;
         }
     }
 `;
