@@ -1,7 +1,8 @@
 import Modal from "react-modal";
 import { CheckBoxTipo, ContentForm, ContentTipoTransacao } from "./styles";
 import closeImg from '../../assets/close.svg'
-import { useState } from "react";
+import { FormEvent, useState } from "react";
+import { useTransacoes } from '../../hooks/useTransacoes';
 
 interface NovoModalTransacaoProps {
     isOpen: boolean;
@@ -9,10 +10,30 @@ interface NovoModalTransacaoProps {
 }
 
 export function NovoModalTransacao({ isOpen, onRequestClose }: NovoModalTransacaoProps){
+    const { createTransacao } = useTransacoes();
+
     const [titulo, setTitulo] = useState('');
     const [valor, setValor] = useState(0);
     const [categoria, setCategoria] = useState('');
     const [tipo, setTipo] = useState('entrada');
+
+    async function handleNovaTransacao(event: FormEvent){
+        event.preventDefault();
+
+        await createTransacao({
+            titulo,
+            valor,
+            categoria,
+            tipo,
+        })
+
+        setTitulo('');
+        setValor(0);
+        setCategoria('')
+        setTipo('entrada')
+        onRequestClose();
+    }
+
 
     return(
         <Modal 
@@ -24,7 +45,7 @@ export function NovoModalTransacao({ isOpen, onRequestClose }: NovoModalTransaca
             <button type="button" onClick={onRequestClose} 
             className="reactModalClose"> <img src={closeImg} alt="Fechar modal"/> </button>
 
-                <ContentForm>
+                <ContentForm onSubmit={handleNovaTransacao}>
                     <h1> Nova Transação </h1>
 
                     <input type="text" value={titulo} placeholder="Título..." 

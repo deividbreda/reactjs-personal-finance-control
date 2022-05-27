@@ -1,7 +1,10 @@
+import { useTransacoes } from '../../hooks/useTransacoes';
 import { ContainerWidth } from "../../styles/global";
 import { Content } from "./styles";
 
 export function Tabela(){
+    const { transacaos } = useTransacoes();
+
     return(
         <ContainerWidth>
             <Content>
@@ -15,20 +18,24 @@ export function Tabela(){
                     </tr>    
                 </thead> 
 
-                <tbody>                  
-                    <tr>
-                        <td> Mercado </td>
-                        <td className="saida"> R$ 300,00 </td>
-                        <td> Compras </td>
-                        <td> 14/02/2022 </td>
-                    </tr> 
+                <tbody>
+                    {transacaos.map(transacao => {
+                        return(
+                            <tr key={transacao.id}>
+                                <td> {transacao.titulo} </td>
 
-                    <tr>
-                        <td> Mercado </td>
-                        <td className="entrada"> R$ 300,00 </td>
-                        <td> Compras </td>
-                        <td> 14/02/2022 </td>
-                    </tr>            
+                                <td className={transacao.tipo}> {
+                                    new Intl.NumberFormat('pt-BR', {
+                                    style: 'currency',
+                                    currency: 'BRL'
+                                }).format(transacao.valor)} </td>
+
+                                <td> {transacao.categoria} </td>
+                                <td> {new Intl.DateTimeFormat('pt-BR').format(
+                                    new Date(transacao.dataCriado))} </td>
+                            </tr>
+                        );
+                    })}                         
                 </tbody>
             </table>
             </Content> 
