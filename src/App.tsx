@@ -4,6 +4,9 @@ import { Header } from "./components/Header";
 import { Homepage } from "./components/Homepage";
 import { NovoModalTransacao } from "./components/NovoModalTransacao";
 import { GlobalStyle } from "./styles/global";
+import { TransacoesProvider } from './hooks/useTransacoes';
+
+Modal.setAppElement('#root');
 
 export function App() {
   const [novoModalTransacao, setNovoModalTransacao] = useState(false);
@@ -17,14 +20,14 @@ export function App() {
 }
 
   return (
-    <div className="App">
+    <TransacoesProvider>
       <Header />
       <Homepage abrirModal={handleAbrirModalTransacao}/>
 
       <NovoModalTransacao onRequestClose={handleFecharModalTransacao} isOpen={novoModalTransacao}/>
 
       <GlobalStyle />
-    </div>
+    </TransacoesProvider>
   );
 }
 
