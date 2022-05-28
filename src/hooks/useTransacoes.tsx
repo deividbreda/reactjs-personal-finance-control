@@ -29,12 +29,12 @@ export function TransacoesProvider({ children }: TransacaoProviderProps){
     const [transacaos, setTransacoes] = useState<Transacao[]>([]);
 
     useEffect(() => {
-        api.get('transacaos')
+        api.get('finances/transacaos')
         .then(response => setTransacoes(response.data.transacaos))
     }, [])
 
     async function createTransacao(transacaoInput: TransacaoInput){
-        const response = await api.post('/transacaos', {
+        const response = await api.post('finances/transacaos', {
             ...transacaoInput, 
             dataCriado: new Date(),
         })

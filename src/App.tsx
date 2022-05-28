@@ -6,6 +6,7 @@ import { NovoModalTransacao } from "./components/NovoModalTransacao";
 import { GlobalStyle } from "./styles/global";
 import { TransacoesProvider } from './hooks/useTransacoes';
 import { NovoModalBoleto } from "./components/NovoModalBoleto";
+import { BoletosProvider } from "./hooks/useBoletos";
 
 Modal.setAppElement('#root');
 
@@ -32,6 +33,7 @@ export function App() {
 
   return (
     <TransacoesProvider>
+      <BoletosProvider>
       <Header />
       <Homepage 
         abrirModalTransacao={handleAbrirModalTransacao}
@@ -41,6 +43,7 @@ export function App() {
       <NovoModalTransacao onRequestClose={handleFecharModalTransacao} isOpen={novoModalTransacao}/>
 
       <GlobalStyle />
+      </BoletosProvider>
     </TransacoesProvider>
   );
 }
